@@ -15,7 +15,6 @@ const Login = ({ onLogin }) => {
       alert("❌ Login ล้มเหลว! กรุณาลองใหม่");
     }
   };
-
   return (
     <div>
       <h2>🔒 Login เพื่อเข้าถึงเว็บ</h2>
@@ -27,5 +26,4 @@ const Login = ({ onLogin }) => {
     </div>
   );
 };
-
 export default Login;
