@@ -1,138 +1,96 @@
-/* รีเซ็ตสไตล์ */
-body, h1, p, ul, li {
-                      margin: 0;
-                      padding: 0;
-                      font-family: Arial, sans-serif;
-                  }
-                  
-                  body {
-                      background: #f5f5f5;
-                  }
-                  
-                  /* Navbar */
-                  header {
-                      display: flex;
-                      justify-content: space-between;
-                      align-items: center;
-                      background: white;
-                      padding: 15px 30px;
-                      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                      position: fixed;
-                      width: 100%;
-                      top: 0;
-                      z-index: 100;
-                  }
-                  
-                  .logo {
-                      font-size: 24px;
-                      font-weight: bold;
-                  }
-                  
-                  nav ul {
-                      list-style: none;
-                      display: flex;
-                      align-items: center;
-                  }
-                  
-                  nav ul li {
-                      margin: 0 15px;
-                  }
-                  
-                  nav ul li a {
-                      text-decoration: none;
-                      color: #333;
-                      font-size: 16px;
-                  }
-                  
-                  .btn-primary {
-                      background: #007BFF;
-                      color: white;
-                      border: none;
-                      padding: 10px 15px;
-                      border-radius: 5px;
-                      cursor: pointer;
-                  }
-                  
-                  .btn-primary:hover {
-                      background: #0056b3;
-                  }
-                  
-                  /* Hero Section */
-                  .hero {
-                      background: url('https://source.unsplash.com/1600x900/?luxury,hall') no-repeat center center/cover;
-                      height: 90vh;
-                      display: flex;
-                      justify-content: center;
-                      align-items: center;
-                      color: white;
-                      text-align: center;
-                      position: relative;
-                  }
-                  
-                  .hero::after {
-                      content: "";
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      width: 100%;
-                      height: 100%;
-                      background: rgba(0, 0, 0, 0.4);
-                  }
-                  
-                  .hero-text {
-                      position: relative;
-                      z-index: 1;
-                  }
-                  
-                  .hero-text h1 {
-                      font-size: 50px;
-                      margin-bottom: 10px;
-                  }
-                  
-                  .hero-text p {
-                      font-size: 20px;
-                      margin-bottom: 20px;
-                  }
-                  
-                  .btn-secondary {
-                      background: white;
-                      color: #007BFF;
-                      border: none;
-                      padding: 10px 20px;
-                      border-radius: 5px;
-                      cursor: pointer;
-                      font-size: 18px;
-                  }
-                  
-                  .btn-secondary:hover {
-                      background: #007BFF;
-                      color: white;
-                  }
-                  
-                  /* Booking Form */
-                  .booking-form {
-                      background: white;
-                      padding: 20px;
-                      text-align: center;
-                      margin: -50px auto 50px;
-                      width: 80%;
-                      max-width: 600px;
-                      border-radius: 10px;
-                      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                  }
-                  
-                  .booking-form form {
-                      display: flex;
-                      gap: 10px;
-                      flex-wrap: wrap;
-                      justify-content: center;
-                  }
-                  
-                  .booking-form input, .booking-form select, .btn-primary {
-                      padding: 10px;
-                      border: 1px solid #ddd;
-                      border-radius: 5px;
-                      font-size: 16px;
-                  }
-                  
-                  
+/* กำหนดสไตล์พื้นฐาน */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* สไตล์ Navbar */
+header {
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav li {
+    margin-left: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* สไตล์ Hero Section */
+.hero {
+    background-image: url('mori-haus-bg.jpg'); /* ใช้รูปภาพที่ดาวน์โหลดมา */
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-text {
+    background-color: rgba(0, 0, 0, 0.5); /* เพิ่มพื้นหลังทึบแสงให้กับข้อความ */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+/* สไตล์ปุ่ม */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* สไตล์ฟอร์มการจอง */
+.booking-form {
+    padding: 20px;
+    text-align: center;
+}
+
+.booking-form form {
+    display: inline-block;
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form button {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
