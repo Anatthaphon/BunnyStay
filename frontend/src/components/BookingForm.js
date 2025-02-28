@@ -20,7 +20,6 @@ const BookingForm = () => {
     const response = await axios.post("http://localhost:5000/book", bookingData);
     alert(response.data.message);
   };
-
   return (
     <form onSubmit={handleSubmit}>
       <h2>📅 จองห้องพัก</h2>
@@ -37,5 +36,4 @@ const BookingForm = () => {
     </form>
   );
 };
-
 export default BookingForm;
