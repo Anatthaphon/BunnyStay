@@ -36,3 +36,13 @@ app.post("/book", async (req, res) => {
 // เปิดเซิร์ฟเวอร์
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
+app.get("/rooms", (req, res) => {
+    const rooms = [
+      { _id: "1", name: "Deluxe Room", description: "ห้องสุดหรู วิวทะเล", price: 2000 },
+      { _id: "2", name: "Superior Room", description: "ห้องกว้างขวาง เหมาะสำหรับครอบครัว", price: 1500 },
+      { _id: "3", name: "Standard Room", description: "ห้องพักมาตรฐาน ราคาประหยัด", price: 1000 },
+    ];
+    res.json(rooms);
+  });
+  
