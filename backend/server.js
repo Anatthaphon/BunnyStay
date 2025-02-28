@@ -46,3 +46,24 @@ app.get("/rooms", (req, res) => {
     res.json(rooms);
   });
   
+  const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+require("dotenv").config();
+
+const users = [{ username: "admin", password: bcrypt.hashSync("password", 8) }];
+
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+  const user = users.find((u) => u.username === username);
+  if (!user || !bcrypt.compareSync(password, user.password)) {
+    return res.status(401).json({ message: "❌ ชื่อผู้ใช้หรือรหัสผ่านผิดพลาด!" });
+  }
+  const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET, { expiresIn: "1h" });
+  res.json({ token });
+});
+
+app.listen(3001, '0.0.0.0', () => {
+  console.log('Server running on http://0.0.0.0:3001');
+});
+
+
