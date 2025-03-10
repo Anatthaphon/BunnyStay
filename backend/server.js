@@ -17,48 +17,36 @@ const db = mongoose.connection;
 db.once("open", () => console.log("✅ Connected to MongoDB"));
 
 // โมเดลสำหรับการจองห้องพัก
-const BookingSchema = new mongoose.Schema({
-  room: String,
-  name: String,
-  checkInDate: Date,
-  checkOutDate: Date,
-});
-const Booking = mongoose.model("Booking", BookingSchema);
-
-// API จองห้องพัก
-app.post("/book", async (req, res) => {
-  const { room, name, checkInDate, checkOutDate } = req.body;
-  const newBooking = new Booking({ room, name, checkInDate, checkOutDate });
-  await newBooking.save();
-  res.json({ message: "✅ จองสำเร็จ!" });
+const bookingSchema = new mongoose.Schema({
+  customerName: String,
+  email: String,
+  checkIn: String,
+  checkOut: String,
+  guests: Number,
+  roomType: String,
+  totalPrice: Number,
 });
 
-// เปิดเซิร์ฟเวอร์
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+const Booking = mongoose.model("Booking", bookingSchema);
 
-app.get("/rooms", (req, res) => {
-    const rooms = [
-      { _id: "1", name: "Deluxe Room", description: "ห้องสุดหรู วิวทะเล", price: 2000 },
-      { _id: "2", name: "Superior Room", description: "ห้องกว้างขวาง เหมาะสำหรับครอบครัว", price: 1500 },
-      { _id: "3", name: "Standard Room", description: "ห้องพักมาตรฐาน ราคาประหยัด", price: 1000 },
-    ];
-    res.json(rooms);
-  });
-  
-  const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
-require("dotenv").config();
-
-const users = [{ username: "admin", password: bcrypt.hashSync("password", 8) }];
-
-app.post("/login", (req, res) => {
-  const { username, password } = req.body;
-  const user = users.find((u) => u.username === username);
-  if (!user || !bcrypt.compareSync(password, user.password)) {
-    return res.status(401).json({ message: "❌ ชื่อผู้ใช้หรือรหัสผ่านผิดพลาด!" });
+app.post("/api/bookings", async (req, res) => {
+  try {
+    const newBooking = new Booking(req.body);
+    await newBooking.save();
+    res.status(201).send("Booking saved!");
+  } catch (error) {
+    res.status(500).send("Error saving booking.");
   }
-  const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET, { expiresIn: "1h" });
-  res.json({ token });
 });
 
+app.get("/api/bookings", async (req, res) => {
+  try {
+    const bookings = await Booking.find(); // ดึงข้อมูลการจองทั้งหมดจาก MongoDB
+    res.status(200).json(bookings);
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching bookings" });
+  }
+});
+
+
+app.listen(5000, () => console.log("Server running on port 5000"));

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import RoomList from "./components/RoomList";
+import Contact from "./pages/Contact"; // นำเข้าหน้า Contact
+import BookingHistory from "./pages/BookingHistory";
 import "./App.css"; // นำเข้าไฟล์ CSS
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home selectedRoom={selectedRoom} />} />
           <Route path="/rooms" element={<RoomList setSelectedRoom={setSelectedRoom} />} />
+          <Route path="/contact" element={<Contact />} /> {/* เพิ่มหน้า Contact */}
+          <Route path="/bookings" element={<BookingHistory />} /> {/* เพิ่มเส้นทางใหม่ */}
         </Routes>
       </div>
     </Router>
@@ -22,48 +26,31 @@ function App() {
 function Header() {
   return (
     <header className="header">
-      <h1 className="logo">BunnyStay</h1>
+      <h1 className="logo">Shangri-La</h1>
       <nav className="navbar">
         <Link to="/">Home</Link>
-        <Link to="/rooms">Rooms</Link>
+        <Link to="/rooms">Rooms & Suites</Link>
+        <Link to="/contact">Contact</Link>
+        <Link to="/bookings">Booking History</Link> {/* ลิงก์ไปยัง Booking History */}
       </nav>
     </header>
   );
 }
 
 function Home({ selectedRoom }) {
-  const navigate = useNavigate();
-
-  const handleBookNow = () => {
-    navigate("/rooms");
-  };
-
   return (
     <div className="home-page">
       <section className="hero">
         <div className="hero-content">
-          <h1>BunnyStay</h1>
-          <p>Prime location creates an unforgettable experience</p>
-          <p>พักผ่อนอย่างมีสไตล์ในที่พักสุดเอ็กซ์คลูซีฟ</p>
+          <h1>Welcome to Shangri-La</h1>
+          <p>Experience luxury and comfort with breathtaking river views.</p>
           {selectedRoom && (
             <p className="selected-room">
-              🏨 คุณเลือก: {selectedRoom.name} ({selectedRoom.price})
+              🏨 You selected: {selectedRoom.name} ({selectedRoom.price})
             </p>
           )}
+          <Link to="/contact" className="book-btn">Contact Us</Link>
         </div>
-      </section>
-
-      <section className="booking-form">
-        <input type="date" placeholder="Check-in" />
-        <input type="date" placeholder="Check-out" />
-        <select>
-          <option>2 Guests</option>
-          <option>3 Guests</option>
-          <option>4 Guests</option>
-        </select>
-        <button className="book-btn" onClick={handleBookNow}>
-          Book Now
-        </button>
       </section>
     </div>
   );
