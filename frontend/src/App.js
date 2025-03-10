@@ -26,11 +26,11 @@ function App() {
 function Header() {
   return (
     <header className="header">
-      <h1 className="logo">Shangri-La</h1>
+      <h1 className="logo">BunnyStay</h1>
       <nav className="navbar">
         <Link to="/">Home</Link>
         <Link to="/rooms">Rooms & Suites</Link>
-        <Link to="/contact">Contact</Link>
+        <Link to="/contact">Booking</Link>
         <Link to="/bookings">Booking History</Link> {/* ลิงก์ไปยัง Booking History */}
       </nav>
     </header>
@@ -42,8 +42,8 @@ function Home({ selectedRoom }) {
     <div className="home-page">
       <section className="hero">
         <div className="hero-content">
-          <h1>Welcome to Shangri-La</h1>
-          <p>Experience luxury and comfort with breathtaking river views.</p>
+          <h1>Welcome to BunnyStay</h1>
+          <p>Prime location create an unforgettable experience</p>
           {selectedRoom && (
             <p className="selected-room">
               🏨 You selected: {selectedRoom.name} ({selectedRoom.price})
