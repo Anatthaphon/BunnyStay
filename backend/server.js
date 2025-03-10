@@ -48,5 +48,38 @@ app.get("/api/bookings", async (req, res) => {
   }
 });
 
+// แก้ไขข้อมูลการจอง
+app.put("/api/bookings/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedBooking = await Booking.findByIdAndUpdate(id, req.body, { new: true });
+    
+    if (!updatedBooking) {
+      return res.status(404).json({ error: "Booking not found" });
+    }
 
+    res.status(200).json(updatedBooking); // ส่งข้อมูลการจองที่ถูกอัปเดตกลับ
+  } catch (error) {
+    res.status(500).json({ error: "Error updating booking" });
+  }
+});
+
+// ลบข้อมูลการจอง
+app.delete("/api/bookings/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedBooking = await Booking.findByIdAndDelete(id);
+
+    if (!deletedBooking) {
+      return res.status(404).json({ error: "Booking not found" });
+    }
+
+    res.status(200).json({ message: "Booking deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Error deleting booking" });
+  }
+});
+
+// เริ่มต้นเซิร์ฟเวอร์
 app.listen(5000, () => console.log("Server running on port 5000"));
+

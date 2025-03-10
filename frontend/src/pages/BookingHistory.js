@@ -5,19 +5,63 @@ function BookingHistory() {
   const [bookings, setBookings] = useState([]);
 
   // ฟังก์ชันดึงข้อมูลการจองจาก API
+  const fetchBookings = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/bookings");
+      const data = await response.json();
+      setBookings(data);
+    } catch (error) {
+      console.error("Error fetching bookings:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchBookings = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/api/bookings");
-        const data = await response.json();
-        setBookings(data);
-      } catch (error) {
-        console.error("Error fetching bookings:", error);
-      }
+    fetchBookings();
+  }, []); // เรียกใช้งานเมื่อ component โหลดครั้งแรก
+
+  // ฟังก์ชันสำหรับการแก้ไขข้อมูลการจอง
+  const handleEdit = (bookingId) => {
+    const updatedBooking = {
+      customerName: "Updated Name", 
+      email: "updated@example.com",
+      checkIn: "2025-01-01",
+      checkOut: "2025-01-05",
+      guests: 2,
+      roomType: "Deluxe Room",
+      totalPrice: 10000,
     };
 
-    fetchBookings();
-  }, []);
+    fetch(`http://localhost:5000/api/bookings/${bookingId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedBooking),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        fetchBookings();  // เรียกใช้งาน fetchBookings หลังจากแก้ไขข้อมูล
+      })
+      .catch((error) => {
+        console.error("Error updating booking:", error);
+      });
+  };
+
+  // ฟังก์ชันสำหรับการลบข้อมูลการจอง
+  const handleDelete = (bookingId) => {
+    if (window.confirm("Are you sure you want to delete this booking?")) {
+      fetch(`http://localhost:5000/api/bookings/${bookingId}`, {
+        method: "DELETE",
+      })
+        .then((response) => response.json())
+        .then(() => {
+          fetchBookings();  // เรียกใช้งาน fetchBookings หลังจากลบข้อมูล
+        })
+        .catch((error) => {
+          console.error("Error deleting booking:", error);
+        });
+    }
+  };
 
   return (
     <div className="booking-history">
@@ -35,6 +79,7 @@ function BookingHistory() {
               <th>Guests</th>
               <th>Room Type</th>
               <th>Total Price</th>
+              <th>Actions</th> {/* ปุ่มแก้ไขและลบ */}
             </tr>
           </thead>
           <tbody>
@@ -47,6 +92,10 @@ function BookingHistory() {
                 <td>{booking.guests}</td>
                 <td>{booking.roomType}</td>
                 <td>{booking.totalPrice} THB</td>
+                <td>
+                  <button onClick={() => handleEdit(booking._id)}>Edit</button>
+                  <button onClick={() => handleDelete(booking._id)}>Delete</button>
+                </td> {/* ปุ่มสำหรับแก้ไขและลบ */}
               </tr>
             ))}
           </tbody>
