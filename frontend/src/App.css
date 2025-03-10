@@ -40,11 +40,12 @@ body {
 
 /* ปรับ Hero Section */
 .hero {
-  background-image: url("https://source.unsplash.com/1600x900/?luxury,hotel");
+  background-image: url("./assets/mori-haus-bg.jpg");
   height: 600px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   text-align: center;
   color: white;
   background-size: cover;
@@ -66,13 +67,31 @@ body {
   position: relative;
   z-index: 2;
   background: rgba(0, 0, 0, 0.5);
-  padding: 30px;
+  padding: 50px;
   border-radius: 10px;
   font-family: 'Playfair Display', serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* จัดให้มีระยะห่างเท่ากัน */
+  height: 200px; /* กำหนดความสูงของ container เพื่อให้มีระยะห่างเท่ากัน */
+}
+
+.hero-content h1, .hero-content p, .hero-content .contact {
+  margin: 0; /* เอาระยะห่างด้านบนและล่างออก */
+  padding: 10px 0; /* เพิ่มระยะห่างระหว่างข้อความ */
 }
 
 .hero-content h1 {
   font-size: 40px;
+}
+
+.hero-content p {
+  font-size: 20px;
+}
+
+.hero-content .contact {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .book-btn {
@@ -103,6 +122,5 @@ body {
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 16
-
+  font-size: 16px;
 }

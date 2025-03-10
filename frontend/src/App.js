@@ -49,7 +49,7 @@ function Home({ selectedRoom }) {
               🏨 You selected: {selectedRoom.name} ({selectedRoom.price})
             </p>
           )}
-          <Link to="/contact" className="book-btn">Contact Us</Link>
+          <Link to="/contact" className="book-btn">Booking Now</Link>
         </div>
       </section>
     </div>

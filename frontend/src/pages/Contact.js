@@ -78,12 +78,12 @@ function Contact() {
       <div className="contact-content">
         <div className="contact-info">
           <h2>Our Address</h2>
-          <p>Shangri-La Hotel, Bangkok</p>
-          <p>89 Soi Wat Suan Plu, New Road, Bangrak, Bangkok 10500, Thailand</p>
+          <p>BunnyStay Hotel, Chonburi</p>
+          <p>199 หมู่ที่ 6 Amphoe Si Racha, Chang Wat Chon Buri 20230, Thailand</p>
           <h2>Phone</h2>
-          <p>+66 2 236 7777</p>
+          <p>038 354 580</p>
           <h2>Email</h2>
-          <p>contact@shangri-la.com</p>
+          <p>prsrc@ku.th</p>
         </div>
 
         <div className="contact-form">
