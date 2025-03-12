@@ -4,6 +4,7 @@ import Login from "./Login";
 import RoomList from "./components/RoomList";
 import Contact from "./pages/Contact"; // นำเข้าหน้า Contact
 import BookingHistory from "./pages/BookingHistory";
+import RoomDetails from "./components/RoomDetails";
 import "./App.css"; // นำเข้าไฟล์ CSS
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           {/* ส่งข้อมูลผู้ใช้ไปยัง BookingHistory */}
           <Route path="/bookings" element={user ? <BookingHistory user={user} /> : <Login setUser={setUser} />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
+          <Route path="/room-details" element={<RoomDetails />} />
         </Routes>
       </div>
     </Router>

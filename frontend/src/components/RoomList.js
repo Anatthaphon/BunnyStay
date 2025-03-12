@@ -3,9 +3,27 @@ import { useNavigate } from "react-router-dom";
 import "./RoomList.css"; // ใช้ไฟล์ CSS เพื่อให้ BG เหมือนหน้า Home
 
 const rooms = [
-  { id: 1, name: "Deluxe Room", price: "5,000 THB/night" },
-  { id: 2, name: "Suite Room", price: "8,000 THB/night" },
-  { id: 3, name: "Presidential Suite", price: "15,000 THB/night" },
+  {
+    id: 1,
+    name: "Deluxe Room",
+    price: "5,000 THB/night",
+    photo: "/images/deluxeroom.jpg", // Ensure this path is correct
+    description: "A luxurious room with all the amenities you need for a comfortable stay.",
+  },
+  {
+    id: 2,
+    name: "Suite Room",
+    price: "8,000 THB/night",
+    photo: "/images/suite-room.jpg", // Update this path as needed
+    description: "A spacious suite with a separate living area and stunning views.",
+  },
+  {
+    id: 3,
+    name: "Presidential Suite",
+    price: "15,000 THB/night",
+    photo: "/images/presidential-suite.jpg", // Update this path as needed
+    description: "The ultimate in luxury, with a private balcony and personalized service.",
+  },
 ];
 
 function RoomList({ setSelectedRoom }) {
@@ -13,7 +31,7 @@ function RoomList({ setSelectedRoom }) {
 
   const handleSelectRoom = (room) => {
     setSelectedRoom(room);
-    navigate("/"); // กลับไปที่หน้า Home
+    navigate("/room-details", { state: { room } }); // Navigate to RoomDetails page with room details
   };
 
   return (
@@ -25,7 +43,7 @@ function RoomList({ setSelectedRoom }) {
             <h3>{room.name}</h3>
             <p>{room.price}</p>
             <button className="book-btn" onClick={() => handleSelectRoom(room)}>
-              Book Now
+              View details
             </button>
           </div>
         ))}
