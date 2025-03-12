@@ -8,7 +8,7 @@ import "./App.css"; // นำเข้าไฟล์ CSS
 
 function App() {
   const [selectedRoom, setSelectedRoom] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(false); // สถานะของ admin
+  const [user, setUser] = useState(null); // สถานะสำหรับเก็บข้อมูลผู้ใช้
 
   return (
     <Router>
@@ -18,9 +18,9 @@ function App() {
           <Route path="/" element={<Home selectedRoom={selectedRoom} />} />
           <Route path="/rooms" element={<RoomList setSelectedRoom={setSelectedRoom} />} />
           <Route path="/contact" element={<Contact />} />
-          {/* หากผู้ใช้เป็น admin จะสามารถเข้าถึงหน้า BookingHistory */}
-          <Route path="/bookings" element={isAdmin ? <BookingHistory /> : <Login setIsAdmin={setIsAdmin} />} />
-          <Route path="/login" element={<Login setIsAdmin={setIsAdmin} />} /> {/* เพิ่มหน้า Login */}
+          {/* ส่งข้อมูลผู้ใช้ไปยัง BookingHistory */}
+          <Route path="/bookings" element={user ? <BookingHistory user={user} /> : <Login setUser={setUser} />} />
+          <Route path="/login" element={<Login setUser={setUser} />} />
         </Routes>
       </div>
     </Router>

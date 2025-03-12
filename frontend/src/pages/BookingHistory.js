@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./BookingHistory.css";
 
-function BookingHistory() {
+function BookingHistory({ user }) {
   const [bookings, setBookings] = useState([]);
 
   // ฟังก์ชันดึงข้อมูลการจองจาก API
@@ -19,11 +19,16 @@ function BookingHistory() {
     fetchBookings();
   }, []); // เรียกใช้งานเมื่อ component โหลดครั้งแรก
 
+  // เพิ่มการตรวจสอบว่า user และ bookings ไม่เป็น null ก่อนการเข้าถึงข้อมูล
+  if (!user) {
+    return <div>Please log in to view your booking history.</div>;
+  }
+
   // ฟังก์ชันสำหรับการแก้ไขข้อมูลการจอง
   const handleEdit = (bookingId) => {
     const updatedBooking = {
-      customerName: "Updated Name", 
-      email: "updated@example.com",
+      customerName: user.username, 
+      email: user.email,
       checkIn: "2025-01-01",
       checkOut: "2025-01-05",
       guests: 2,
@@ -79,25 +84,27 @@ function BookingHistory() {
               <th>Guests</th>
               <th>Room Type</th>
               <th>Total Price</th>
-              <th>Actions</th> {/* ปุ่มแก้ไขและลบ */}
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {bookings.map((booking) => (
-              <tr key={booking._id}>
-                <td>{booking.customerName}</td>
-                <td>{booking.email}</td>
-                <td>{booking.checkIn}</td>
-                <td>{booking.checkOut}</td>
-                <td>{booking.guests}</td>
-                <td>{booking.roomType}</td>
-                <td>{booking.totalPrice} THB</td>
-                <td>
-                  <button onClick={() => handleEdit(booking._id)}>Edit</button>
-                  <button onClick={() => handleDelete(booking._id)}>Delete</button>
-                </td> {/* ปุ่มสำหรับแก้ไขและลบ */}
-              </tr>
-            ))}
+            {bookings
+              .filter((booking) => booking.email === user.email) // แสดงข้อมูลเฉพาะของผู้ใช้
+              .map((booking) => (
+                <tr key={booking._id}>
+                  <td>{booking.customerName}</td>
+                  <td>{booking.email}</td>
+                  <td>{booking.checkIn}</td>
+                  <td>{booking.checkOut}</td>
+                  <td>{booking.guests}</td>
+                  <td>{booking.roomType}</td>
+                  <td>{booking.totalPrice} THB</td>
+                  <td>
+                    <button onClick={() => handleEdit(booking._id)}>Edit</button>
+                    <button onClick={() => handleDelete(booking._id)}>Delete</button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       )}

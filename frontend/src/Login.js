@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login({ setIsAdmin }) {
+function Login({ setUser }) {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState(""); // เพิ่มการจัดการกับรหัสผ่าน
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    // ตรวจสอบชื่อผู้ใช้และรหัสผ่าน
+    // ตรวจสอบข้อมูลการเข้าสู่ระบบ
     if (username === "admin" && password === "admin123") {
-      setIsAdmin(true);
-      navigate("/bookings"); // หากเป็น admin ให้ไปที่หน้า BookingHistory
+      setUser({ name: "Admin", email: "admin@example.com", isAdmin: true }); // สำหรับ Admin
+      navigate("/bookings");
+    } else if (username && email) {
+      setUser({ name: username, email: email, isAdmin: false }); // สำหรับ User ทั่วไป
+      navigate("/bookings");
     } else {
-      setIsAdmin(false);
-      navigate("/"); // ถ้าไม่ใช่ admin ให้ไปที่หน้า Home
+      alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     }
   };
 
@@ -21,11 +24,19 @@ function Login({ setIsAdmin }) {
     <div>
       <h2>Login</h2>
       <div>
-        <label>Username:</label>
+        <label>Name:</label>
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Email:</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div>
