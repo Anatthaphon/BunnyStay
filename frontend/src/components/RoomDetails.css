@@ -1,6 +1,6 @@
 .room-details {
   background-color: #f5f5f5;
-  background-image: url("../assets/your-background-image.jpg"); /* Update this path as needed */
+  /*background-image: url("/assets/your-background-image.jpg"); /* Update this path as needed */
   background-size: cover;
   background-position: center;
   padding: 20px;
