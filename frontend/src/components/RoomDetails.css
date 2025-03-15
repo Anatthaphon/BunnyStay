@@ -1,28 +1,22 @@
 .room-details {
-  background-color: #f5f5f5;
-  /*background-image: url("/assets/your-background-image.jpg"); /* Update this path as needed */
-  background-size: cover;
-  background-position: center;
   padding: 20px;
-  border-radius: 10px;
-  max-width: 800px;
-  margin: 20px auto;
   text-align: center;
 }
 
 .room-photo {
   width: 100%;
+  max-width: 600px;
   height: auto;
   border-radius: 10px;
-  margin-bottom: 20px;
 }
 
-.hotel-photo { /* Add this block */
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
+.hotel-photo {
+  width: 80%;
+  max-width: 600px;
   margin-top: 20px;
+  border-radius: 10px;
 }
+
 
 .room-details h2 {
   margin-bottom: 20px;

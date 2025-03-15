@@ -12,8 +12,6 @@ function RoomDetails() {
       <img src={room.photo} alt={room.name} className="room-photo" />
       <p>Price: {room.price}</p>
       <p>{room.description}</p>
-      {/* Add more room details here */}
-      <img src="/images/hotel-photo.jpg" alt="Hotel" className="hotel-photo" /> {/* Add this line */}
     </div>
   );
 }

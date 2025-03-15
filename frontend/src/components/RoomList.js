@@ -41,6 +41,7 @@ function RoomList({ setSelectedRoom }) {
         {rooms.map((room) => (
           <div key={room.id} className="room-card">
             <h3>{room.name}</h3>
+            <img src={room.photo} alt={room.name} className="room-photo" /> {/* แสดงรูปห้อง */}
             <p>{room.price}</p>
             <button className="book-btn" onClick={() => handleSelectRoom(room)}>
               View details
