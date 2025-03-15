@@ -4,67 +4,48 @@ import "./BookingHistory.css";
 function BookingHistory({ user }) {
   const [bookings, setBookings] = useState([]);
 
-  // ฟังก์ชันดึงข้อมูลการจองจาก API
-  const fetchBookings = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/bookings");
-      const data = await response.json();
-      setBookings(data);
-    } catch (error) {
-      console.error("Error fetching bookings:", error);
+  useEffect(() => {
+    fetch("http://localhost:5000/api/bookings") // เปลี่ยนเป็น API ของคุณ
+      .then((res) => res.json())
+      .then((data) => {
+        if (user?.isAdmin) {
+          setBookings(data); // Admin เห็นทุก Booking
+        } else {
+          setBookings(data.filter((booking) => booking.email === user?.email)); // User เห็นแค่ของตัวเอง
+        }
+      })
+      .catch((error) => console.error("Error fetching bookings:", error));
+  }, [user]);
+
+  const handleDelete = (id) => {
+    if (window.confirm("คุณแน่ใจหรือไม่ว่าต้องการลบการจองนี้?")) {
+      fetch(`http://localhost:5000/api/bookings/${id}`, { method: "DELETE" })
+        .then((res) => {
+          if (res.ok) {
+            setBookings((prev) => prev.filter((b) => b._id !== id));
+          } else {
+            console.error("Failed to delete booking");
+          }
+        })
+        .catch((error) => console.error("Error deleting:", error));
     }
   };
 
-  useEffect(() => {
-    fetchBookings();
-  }, []); // เรียกใช้งานเมื่อ component โหลดครั้งแรก
-
-  // เพิ่มการตรวจสอบว่า user และ bookings ไม่เป็น null ก่อนการเข้าถึงข้อมูล
-  if (!user) {
-    return <div>Please log in to view your booking history.</div>;
-  }
-
-  // ฟังก์ชันสำหรับการแก้ไขข้อมูลการจอง
-  const handleEdit = (bookingId) => {
-    const updatedBooking = {
-      customerName: user.username, 
-      email: user.email,
-      checkIn: "2025-01-01",
-      checkOut: "2025-01-05",
-      guests: 2,
-      roomType: "Deluxe Room",
-      totalPrice: 10000,
-    };
-
-    fetch(`http://localhost:5000/api/bookings/${bookingId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedBooking),
-    })
-      .then((response) => response.json())
-      .then(() => {
-        fetchBookings();  // เรียกใช้งาน fetchBookings หลังจากแก้ไขข้อมูล
+  const handleEdit = (id) => {
+    const newDate = prompt("กรุณาใส่วันที่ใหม่ (YYYY-MM-DD):");
+    if (newDate) {
+      fetch(`http://localhost:5000/api/bookings/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ checkIn: newDate }), // อัปเดตวันที่ Check-in
       })
-      .catch((error) => {
-        console.error("Error updating booking:", error);
-      });
-  };
-
-  // ฟังก์ชันสำหรับการลบข้อมูลการจอง
-  const handleDelete = (bookingId) => {
-    if (window.confirm("Are you sure you want to delete this booking?")) {
-      fetch(`http://localhost:5000/api/bookings/${bookingId}`, {
-        method: "DELETE",
-      })
-        .then((response) => response.json())
-        .then(() => {
-          fetchBookings();  // เรียกใช้งาน fetchBookings หลังจากลบข้อมูล
+        .then((res) => res.json())
+        .then((updatedBooking) => {
+          setBookings((prev) =>
+            prev.map((b) => (b._id === id ? { ...b, checkIn: newDate } : b))
+          );
         })
-        .catch((error) => {
-          console.error("Error deleting booking:", error);
-        });
+        .catch((error) => console.error("Error updating:", error));
     }
   };
 
@@ -88,23 +69,25 @@ function BookingHistory({ user }) {
             </tr>
           </thead>
           <tbody>
-            {bookings
-              .filter((booking) => booking.email === user.email) // แสดงข้อมูลเฉพาะของผู้ใช้
-              .map((booking) => (
-                <tr key={booking._id}>
-                  <td>{booking.customerName}</td>
-                  <td>{booking.email}</td>
-                  <td>{booking.checkIn}</td>
-                  <td>{booking.checkOut}</td>
-                  <td>{booking.guests}</td>
-                  <td>{booking.roomType}</td>
-                  <td>{booking.totalPrice} THB</td>
-                  <td>
-                    <button onClick={() => handleEdit(booking._id)}>Edit</button>
-                    <button onClick={() => handleDelete(booking._id)}>Delete</button>
-                  </td>
-                </tr>
-              ))}
+            {bookings.map((booking) => (
+              <tr key={booking._id}>
+                <td>{booking.customerName}</td>
+                <td>{booking.email}</td>
+                <td>{booking.checkIn}</td>
+                <td>{booking.checkOut}</td>
+                <td>{booking.guests}</td>
+                <td>{booking.roomType}</td>
+                <td>{booking.totalPrice} THB</td>
+                <td>
+                  {(user?.isAdmin || booking.email === user?.email) && (
+                    <>
+                      <button onClick={() => handleEdit(booking._id)}>Edit</button>
+                      <button onClick={() => handleDelete(booking._id)}>Delete</button>
+                    </>
+                  )}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       )}
