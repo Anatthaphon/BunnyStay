@@ -1,58 +1,63 @@
-/* ใช้ฟอนต์พรีเมียม */
+/* ใช้ฟอนต์พรีเมียมจาก Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap');
 
+/* ตั้งค่าพื้นฐานของ body */
 body {
-  font-family: 'Lora', serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f9fa;
+  font-family: 'Lora', serif; /* ใช้ฟอนต์ Lora เป็นฟอนต์หลัก */
+  margin: 0; /* ลบระยะขอบรอบนอกของหน้าเว็บ */
+  padding: 0; /* ลบระยะขอบด้านใน */
+  background-color: #f8f9fa; /* กำหนดสีพื้นหลังเป็นสีเทาอ่อน */
 }
 
-/* ปรับ Header */
+/* ===== ส่วนของ Header (ส่วนบนของเว็บ) ===== */
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 50px;
-  background: #1c1c1c;
-  color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  display: flex; /* จัดให้อยู่ในรูปแบบ Flexbox */
+  justify-content: space-between; /* จัดให้โลโก้อยู่ซ้าย และเมนูอยู่ขวา */
+  align-items: center; /* จัดให้องค์ประกอบทั้งหมดอยู่ตรงกลางแนวตั้ง */
+  padding: 20px 50px; /* กำหนดระยะห่างขอบของ header */
+  background: #1c1c1c; /* กำหนดสีพื้นหลังเป็นสีดำเทา */
+  color: white; /* กำหนดสีตัวอักษรเป็นสีขาว */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* เพิ่มเงาให้ Header */
 }
 
+/* โลโก้ของเว็บไซต์ */
 .logo {
-  font-size: 28px;
-  font-family: 'Playfair Display', serif;
-  font-weight: bold;
-  color: gold;
+  font-size: 50px; /* กำหนดขนาดตัวอักษร */
+  font-family: 'Playfair Display', serif; /* ใช้ฟอนต์ที่ให้ความรู้สึกหรูหรา */
+  font-weight: bold; /* ทำให้ตัวอักษรหนา */
+  color: gold; /* กำหนดสีตัวอักษรเป็นสีทอง */
 }
 
+/* สไตล์ของเมนูนำทาง */
 .navbar a {
-  margin: 0 15px;
-  text-decoration: none;
-  color: white;
-  font-size: 18px;
-  transition: color 0.3s ease;
+  margin: 0 15px; /* กำหนดระยะห่างระหว่างลิงก์ */
+  text-decoration: none; /* เอาเส้นใต้ของลิงก์ออก */
+  color: white; /* กำหนดสีตัวอักษรเป็นสีขาว */
+  font-size: 25px; /* กำหนดขนาดตัวอักษร */
+  transition: color 0.3s ease; /* เพิ่มเอฟเฟกต์เปลี่ยนสีแบบนุ่มนวล */
 }
 
+/* เปลี่ยนสีของเมนูเมื่อเอาเมาส์ไปวาง */
 .navbar a:hover {
-  color: gold;
+  color: gold; /* เปลี่ยนสีเป็นสีทอง */
 }
 
-/* ปรับ Hero Section */
+/* ===== ส่วนของ Hero Section (ภาพพื้นหลังใหญ่) ===== */
 .hero {
-  background-image: url("./assets/mori-haus-bg.jpg");
-  height: 900px;
+  background-image: url("./assets/mori-haus-bg.jpg"); /* ใช้ภาพเป็นพื้นหลัง */
+  height: 900px; /* กำหนดความสูงของ Hero Section */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-  background-size: cover;
-  background-position: center;
-  position: relative;
+  justify-content: center; /* จัดให้เนื้อหาอยู่ตรงกลางแนวตั้ง */
+  align-items: center; /* จัดให้อยู่ตรงกลางแนวนอน */
+  text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
+  color: white; /* กำหนดสีตัวอักษรเป็นสีขาว */
+  background-size: cover; /* ปรับภาพให้เต็มพื้นที่ */
+  background-position: center; /* จัดให้ภาพอยู่ตรงกลาง */
+  position: relative; /* ใช้สำหรับเลเยอร์พื้นหลัง */
 }
 
+/* ใส่เลเยอร์มืดเพื่อให้ข้อความอ่านง่ายขึ้น */
 .hero::before {
   content: "";
   position: absolute;
@@ -60,67 +65,75 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.4); /* ใส่สีดำโปร่งแสงทับ */
 }
 
+/* กล่องที่ครอบข้อความใน Hero */
 .hero-content {
   position: relative;
-  z-index: 2;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 50px;
-  border-radius: 10px;
-  font-family: 'Playfair Display', serif;
+  z-index: 2; /* ทำให้กล่องอยู่ด้านหน้า */
+  background: rgba(0, 0, 0, 0.5); /* ใส่พื้นหลังโปร่งแสงให้ข้อความ */
+  padding: 50px; /* เพิ่มพื้นที่ขอบรอบ */
+  border-radius: 10px; /* ทำให้มุมโค้งมน */
+  font-family: 'Playfair Display', serif; /* ใช้ฟอนต์หรูหรา */
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* จัดให้มีระยะห่างเท่ากัน */
-  height: 200px; /* กำหนดความสูงของ container เพื่อให้มีระยะห่างเท่ากัน */
+  justify-content: space-between; /* จัดให้มีระยะห่างระหว่างข้อความเท่าๆ กัน */
+  height: 200px; /* กำหนดความสูงของกล่อง */
 }
 
+/* จัดข้อความแต่ละบรรทัดให้มีระยะห่างเท่ากัน */
 .hero-content h1, .hero-content p, .hero-content .contact {
   margin: 0; /* เอาระยะห่างด้านบนและล่างออก */
-  padding: 10px 0; /* เพิ่มระยะห่างระหว่างข้อความ */
+  padding: 10px 0; /* เพิ่มระยะห่างระหว่างบรรทัด */
 }
 
+/* สไตล์ของหัวข้อหลัก */
 .hero-content h1 {
-  font-size: 40px;
+  font-size: 50px; /* ขนาดตัวอักษรใหญ่ */
 }
 
+/* สไตล์ของข้อความรายละเอียด */
 .hero-content p {
-  font-size: 20px;
+  font-size: 20px; /* ขนาดตัวอักษรกลาง */
 }
 
+/* สไตล์ของข้อมูลติดต่อ */
 .hero-content .contact {
   font-size: 18px;
   font-weight: bold;
 }
 
+/* ปุ่มจอง */
 .book-btn {
-  background-color: gold;
-  color: black;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 18px;
+  background-color: gold; /* กำหนดสีพื้นหลังเป็นสีทอง */
+  color: black; /* กำหนดสีตัวอักษรเป็นสีดำ */
+  border: none; /* เอาเส้นขอบออก */
+  padding: 12px 20px; /* กำหนดขนาดของปุ่ม */
+  border-radius: 5px; /* ทำให้มุมของปุ่มโค้งมน */
+  cursor: pointer; /* เปลี่ยนเมาส์เป็นรูปมือเมื่อชี้ที่ปุ่ม */
+  font-size: 25px;
   font-weight: bold;
 }
 
+/* เปลี่ยนสีปุ่มเมื่อเอาเมาส์ไปวาง */
 .book-btn:hover {
-  background-color: #e6b800;
+  background-color: #e6b800; /* ทำให้สีทองเข้มขึ้น */
 }
 
-/* ปรับฟอร์มจอง */
+/* ===== ส่วนของฟอร์มจอง (Booking Form) ===== */
 .booking-form {
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 40px;
+  justify-content: center; /* จัดให้อยู่กึ่งกลาง */
+  gap: 10px; /* กำหนดระยะห่างระหว่างช่องฟอร์ม */
+  margin: 40px; /* เพิ่มระยะห่างด้านนอกของฟอร์ม */
 }
 
+/* สไตล์ของช่องกรอกข้อมูล */
 .booking-form input,
 .booking-form select {
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
+  padding: 12px; /* กำหนดระยะห่างภายในช่องกรอก */
+  border: 1px solid #ccc; /* กำหนดเส้นขอบสีเทาอ่อน */
+  border-radius: 5px; /* ทำให้มุมโค้งมน */
+  font-size: 16px; /* กำหนดขนาดตัวอักษร */
 }
