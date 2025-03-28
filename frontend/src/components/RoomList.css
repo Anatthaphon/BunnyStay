@@ -12,32 +12,36 @@
   
   .rooms {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
   }
   
   .room-card {
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin: 10px;
+    border: 1px solid #05000000;
+    padding: 15px;
     border-radius: 10px;
+    width: 250px;
     text-align: center;
+    background-color: #141313e5;
   }
   
   .room-photo {
     width: 100%;
+    max-width: 300px; /* ลดขนาดจาก 600px เป็น 300px */
     height: auto;
-    border-radius: 8px;
+    border-radius: 10px;
   }
   
   .book-btn {
-    padding: 10px;
+    margin-top: 10px;
+    padding: 10px 15px;
+    border: none;
     background-color: #007bff;
     color: white;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
   }
+  
   
   .book-btn:hover {
     background-color: #0056b3;
