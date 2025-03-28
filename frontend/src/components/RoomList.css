@@ -13,7 +13,15 @@
   .room-list h2 {
     font-size: 32px; /* เพิ่มขนาดฟอนต์ */
     font-weight: bold;
-  }
+    color: white; /* ตัวอักษรสีขาว */
+    text-shadow: 
+        -2px -2px 0 black, 
+        0px 0px 8px black; /* เพิ่มเงาเบลอรอบขอบ */
+}
+
+
+
+
   
   .rooms {
     display: flex;
