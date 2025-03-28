@@ -1,0 +1,54 @@
+.login-container {
+  background-image: url("./assets/mori-haus-bg.jpg"); /* ใช้ภาพเป็นพื้นหลัง */
+  height: 800px; /* กำหนดความสูงของ Hero Section */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* จัดให้เนื้อหาอยู่ตรงกลางแนวตั้ง */
+  align-items: center; /* จัดให้อยู่ตรงกลางแนวนอน */
+  text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
+  color: rgb(255, 255, 255); /* กำหนดสีตัวอักษรเป็นสีขาว */
+  background-size: cover; /* ปรับภาพให้เต็มพื้นที่ */
+  background-position: center; /* จัดให้ภาพอยู่ตรงกลาง */
+  position: relative; /* ใช้สำหรับเลเยอร์พื้นหลัง */
+}
+  
+  
+  .login-box {
+    background: rgba(0, 0, 0, 0.842);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+    
+  }
+  
+  .login-box h2 {
+    margin-bottom: 15px;
+  }
+  
+  .login-box input {
+    width: 75%;
+
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .login-box button {
+    padding: 12px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease-in-out;
+  min-width: 120px; /* ป้องกันปุ่มหด */
+  }
+  
+  .login-box button:hover {
+    background-color: #0056b3;
+  }
+  

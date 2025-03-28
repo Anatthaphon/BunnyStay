@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 function Login({ setUser }) {
   const [username, setUsername] = useState("");
@@ -20,27 +21,27 @@ function Login({ setUser }) {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <div>
-        <label>Name:</label>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+    <div className="login-container">
+      <div className="login-box">
+        <h2>Login</h2>
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <button onClick={handleLogin}>Login</button>
       </div>
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div>
-      </div>
-      <button onClick={handleLogin}>Login</button>
     </div>
   );
 }
