@@ -9,6 +9,11 @@
     justify-content: center;
     color: white;
   }
+
+  .room-list h2 {
+    font-size: 32px; /* เพิ่มขนาดฟอนต์ */
+    font-weight: bold;
+  }
   
   .rooms {
     display: flex;
