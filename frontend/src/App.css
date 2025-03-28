@@ -41,7 +41,7 @@ body {
 /* ปรับ Hero Section */
 .hero {
   background-image: url("./assets/mori-haus-bg.jpg");
-  height: 600px;
+  height: 900px;
   display: flex;
   flex-direction: column;
   justify-content: center;
