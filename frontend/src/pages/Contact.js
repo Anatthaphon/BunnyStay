@@ -24,7 +24,7 @@ function Contact() {
 
     const startDate = new Date(checkIn);
     const endDate = new Date(checkOut);
-    const nights = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+    const nights = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)); //(1000 * 60 * 60 * 24) = 86,400,000 มิลลิวินาที (เท่ากับ 1 วัน)
 
     if (nights <= 0) {
       alert("Check-out date must be after Check-in date.");
@@ -34,7 +34,7 @@ function Contact() {
     const price = nights * roomRates[roomType];
     setTotalPrice(price);
   };
-
+// ฟังก์ชันส่งข้อมูลการจองไปยังเซิร์ฟเวอร์
   const handleSubmit = async (e) => {
     e.preventDefault();
 
