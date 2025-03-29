@@ -70,12 +70,8 @@ function Home({ selectedRoom }) {
           <h1>Welcome to BunnyStay</h1>
           <p>Prime location creates an unforgettable experience</p>
 
-          {/* ถ้ามีห้องที่ถูกเลือก จะแสดงรายละเอียดห้องที่เลือก */}
-          {selectedRoom && (
-            <p className="selected-room">
-              🏨 You selected: {selectedRoom.name} ({selectedRoom.price})
-            </p>
-          )}
+         
+          
 
           {/* ปุ่มลิงก์ไปหน้าจองห้องพัก */}
           <Link to="/contact" className="book-btn">Booking Now</Link>

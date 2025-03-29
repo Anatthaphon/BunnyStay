@@ -26,12 +26,12 @@ const rooms = [
   },
 ];
 
-function RoomList({ setSelectedRoom }) {
+function RoomList({ setSelectedRoom }) { // เป็น Prop ที่รับมาจาก Parent Component เพื่อเก็บค่าห้องที่ถูกเลือก
   const navigate = useNavigate();
 
   const handleSelectRoom = (room) => {
     setSelectedRoom(room);
-    navigate("/room-details", { state: { room } }); // Navigate to RoomDetails page with room details
+    navigate("/room-details", { state: { room } }); //อัปเดตค่าห้องที่เลือก (เก็บไว้ใช้ใน Component อื่น ๆ)อ
   };
 
   return (
