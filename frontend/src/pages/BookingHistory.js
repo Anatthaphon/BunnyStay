@@ -124,3 +124,4 @@ function BookingHistory({ user }) {
 }
 
 export default BookingHistory;
+
